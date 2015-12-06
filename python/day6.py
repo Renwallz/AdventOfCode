@@ -13,6 +13,19 @@ class light(object):
 	def isLit(self):
 		return 1 if self.lit else 0
 		
+#part 2
+class light(object):
+	def __init__(self):
+		self.lit = 0
+	def toggle(self):
+		self.lit += 2
+	def turn_on(self):
+		self.lit += 1
+	def turn_off(self):
+		self.lit = max((0, self.lit - 1))
+	def isLit(self):
+		return self.lit
+		
 grid = {}
 for i in range(1000):
 	grid[i] = {}
