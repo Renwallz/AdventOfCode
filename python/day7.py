@@ -10,7 +10,6 @@ with open('day7.in') as f:
 def compute(rule, *inputs):
     #if it's a straight value
     if rule.isdigit():
-        print("found a value! ", rule)
         return int(rule)
         
     #if it's a variable
