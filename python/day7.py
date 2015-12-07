@@ -8,6 +8,9 @@ with open('day7.in') as f:
 
 @functools.lru_cache(None)
 def compute(rule, *inputs):
+    #hard code in b (eww)
+    if rule == 'b':
+        return 3176
     #if it's a straight value
     if rule.isdigit():
         return int(rule)
