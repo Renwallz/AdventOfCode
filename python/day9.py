@@ -15,9 +15,7 @@ with open("day9.in") as f:
 maxdistance = 0
 combo = tuple()   
 for permi in permutations(places.keys(), len(places.keys())):
-    distance = 0
-    for i in range(len(permi)-1):
-        distance += places[permi[i]][permi[i+1]]
+    distance = sum(places[source][dest] for source, dest in zip(permi, permi[1:]))
     if distance > maxdistance:
         combo = permi
         maxdistance = distance
