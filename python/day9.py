@@ -12,14 +12,14 @@ with open("day9.in") as f:
 
 
 #brute force method  
-mindistance = 9999999   
+maxdistance = 0
 combo = tuple()   
 for permi in permutations(places.keys(), len(places.keys())):
     distance = 0
     for i in range(len(permi)-1):
         distance += places[permi[i]][permi[i+1]]
-    if distance < mindistance:
+    if distance > maxdistance:
         combo = permi
-        mindistance = distance
+        maxdistance = distance
         
-print (combo, mindistance)
+print (combo, maxdistance)
