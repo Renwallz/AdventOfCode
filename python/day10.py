@@ -15,7 +15,7 @@ def play(number):
     return r
     
 answer = '1113222113'
-for _ in range(40):
+for _ in range(50):
     answer = play(answer)
     
 print(len(answer))
