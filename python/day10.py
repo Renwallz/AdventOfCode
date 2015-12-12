@@ -1,3 +1,5 @@
+SEED = '1113222113'
+
 def play(number):
     previous = number[0]
     count = 0
@@ -14,7 +16,7 @@ def play(number):
     r.append(previous)
     return r
     
-answer = '1113222113'
+answer = seed
 for _ in range(50):
     answer = play(answer)
     
