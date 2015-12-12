@@ -1,4 +1,5 @@
-START = 'cqjxjnds'
+#START = 'cqjxjnds'
+START = 'cqjxxyzz'
 ALPHABET = 'abcdefghjkmnpqrstuvwxyz'
 
 def increment(string):
@@ -42,7 +43,7 @@ def rule3(string):
     pairs = [a for a,b in zip(string, string[1:]) if a == b]
     return len(pairs) >= 2 and pairs[0] != pairs[1]
     
-password = START
+password = increment(START)
 while(not rule3(password) or not rule1(password)):
     password = increment(password)
 
