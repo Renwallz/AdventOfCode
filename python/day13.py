@@ -3,6 +3,8 @@ from collections import defaultdict
 
 places = defaultdict(dict)
 
+ME = "Renwallz"
+
 with open("day13.in") as f:
     for line in f:
         line = line.strip('.\n')
@@ -13,7 +15,12 @@ with open("day13.in") as f:
         second = line[-1]
         places[first][second] = amount * negator
 
-print(places)
+#tuplify to prevent modifying something we're iterating through
+for person in tuple(places.keys()):
+    places[ME][person] = 0
+    places[person][ME] = 0
+    
+#print(places)
 
 #brute force method  
 maxdistance = 0
