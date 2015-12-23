@@ -5,6 +5,7 @@ grid = []
 ON = '#'
 OFF = '.'
 NUM_ITERATIONS = 100
+STUCK_LIGHTS = True
 
 
 def get_active_neighbour_count(i, j):
@@ -28,6 +29,13 @@ with open('day18.in') as f:
         line = line.rstrip('\n')
         grid.append(list(line))
 
+
+def stick_lights():
+    grid[0][0] = ON
+    grid[0][-1] = ON
+    grid[-1][0] = ON
+    grid[-1][-1] = ON
+
 for _ in range(NUM_ITERATIONS):
     new_grid = deepcopy(grid)
     for i in range(len(grid)):
@@ -38,5 +46,7 @@ for _ in range(NUM_ITERATIONS):
                 new_grid[i][j] = ON
 
     grid = new_grid
+    if STUCK_LIGHTS:
+        stick_lights()
 
 print(sum(map(lambda a: a.count(ON), (x for x in grid))))
