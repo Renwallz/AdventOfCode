@@ -13,7 +13,7 @@ ingredients = {}
 TOTAL_TEASPOONS = 100
 
 
-def score(recipe):
+def score(recipe, target_calories=0):
     if sum(recipe.values()) != TOTAL_TEASPOONS:
         return 0
 
@@ -24,6 +24,13 @@ def score(recipe):
 
     for item in scores.keys():
         scores[item] = max(0, scores[item])
+
+    if target_calories != 0:
+        calories = 0
+        for item in recipe.keys():
+            calories += recipe[item] * ingredients.get(item)['calories']
+        if calories != target_calories:
+            return 0
 
     return reduce(mul, scores.values())
 
@@ -41,7 +48,7 @@ for amounts in product(range(TOTAL_TEASPOONS), repeat=len(ingredients.keys())):
     if sum(amounts) != TOTAL_TEASPOONS:
         continue
     recipe = dict(zip(ingredients.keys(), amounts))
-    scores.append((score(recipe), recipe))
+    scores.append((score(recipe, target_calories=500), recipe))
 
 print(sorted(scores, key=lambda x: x[0], reverse=True)[:5])
 
