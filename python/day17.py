@@ -9,5 +9,7 @@ for i in range(len(containers)):
     for comb in combinations(containers, i):
         if sum(comb) == TOTAL_AMOUNT:
             answer += 1
+    if answer > 0:
+        break
 
-print(answer)
+print(i, answer)
