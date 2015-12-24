@@ -68,15 +68,22 @@ def simulate(kit):
 
 
 min_cost = 999999
+max_cost = 0
 
 for weapon in weapons:
     for arm in armor:
         for ring in combinations(rings, 2):
             kit = (weapon, arm, ring[0], ring[1])
-            if simulate(kit):
-                cost = sum(map(lambda x: x.Cost, kit))
+            result = simulate(kit)
+            cost = sum(map(lambda x: x.Cost, kit))
+            if result:  # if we win!
                 if cost < min_cost:
                     layout = kit
                     min_cost = cost
+            else:  # if we lose!
+                if cost > max_cost:
+                    big_layout = kit
+                    max_cost = cost
 
 print("Cheapest winning outfit costs {} and contains {}".format(min_cost, layout))
+print("Most expensive losing outfit costs {} and contains {}".format(max_cost, big_layout))
