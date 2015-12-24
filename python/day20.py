@@ -8,11 +8,14 @@ def get_divisors(x):
     for i in range(int(math.floor(math.sqrt(x))), 0, -1):
         if x % i == 0:
             divisors.extend([i, x // i])
+    divisors = set(divisors)
     return divisors
 
 
 def calculate_presents(house_number):
-    return sum(get_divisors(house_number)) * 10
+    divisors = filter(lambda x: x * 50 >= house_number, get_divisors(house_number))
+    divisors = map(lambda x: x * 11, divisors)
+    return sum(divisors)
 
 
 for i in range(1, 10):
