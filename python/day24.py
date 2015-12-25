@@ -39,20 +39,29 @@ solved = []
 global_counter = 0
 
 for r in range(1, len(packages)):
+    print("Trying r={}".format(r))
     for combo in combinations(packages, r):
         remaining = copy(packages)
         for item in combo:
             remaining.remove(item)
 
-        if sum(combo) == sum(remaining) / 2:
+        if sum(combo) == sum(remaining) / 3:
+            skip = False
             for left, right in divide(remaining):
                 left = list(left)
                 right = list(right)
-                if sum(left) == sum(right):
-                    print(r, combo, left, right)
-                    solved.append((combo, global_counter, left, right))
-                    global_counter += 1
-                    break
+                if sum(left) == sum(right) / 2:
+                    for trunk, right in divide(right):
+                        trunk = list(trunk)
+                        right = list(right)
+                        if sum(left) == sum(trunk) == sum(right):
+                            print(r, combo, left, trunk, right)
+                            solved.append((combo, global_counter, left, trunk, right))
+                            global_counter += 1
+                            skip = True
+                            break
+                    if skip:
+                        break
     if solved:
         if len(solved) == 1:
             print(solved[0][0])
