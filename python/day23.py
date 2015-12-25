@@ -6,7 +6,7 @@ with open('day23.in') as f:
         line = line.split()
         program.append(line)
 
-a = b = 0
+a, b = 1, 0
 i = 0
 while i < len(program):
     line = program[i]
