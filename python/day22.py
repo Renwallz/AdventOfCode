@@ -122,6 +122,10 @@ class combat_state(object):
                 return False
 
         self.log.append("\n--Player Turn--")
+
+        self.player_health -= 1
+        if self.player_health <= 0:
+            return False
         self.log.append(
                 "- Player has {} hit points, {} armor, {} mana".format(self.player_health, self.armor,
                                                                        self.player_mana))
